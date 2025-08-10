@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .bg-dark-blue {
+    background-color: #0b1e36; /* Rich dark blue */
+  }
+
+  .text-sky-blue {
+    color: #87CEEB; /* Sky blue */
+  }
+
+  .text-dark-blue {
+    color: #0b1e36;
+  }
+}
