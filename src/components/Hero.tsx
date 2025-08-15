@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const Hero = () => {
 
-    const [value, setValue] = useState<string>(["THERE", "IN LONDON", "IN SYDNET", "IN TOKYO", "IN HONG KONG", "IN NEW YORK", "IN ZURICH", "IN PARIS", "IN ROME", "IN SHANGHAI"][Math.floor(Math.random() * 10)]);
+    const [value, setValue] = useState<string>(["THERE", "IN LONDON", "IN SYDNEY", "IN TOKYO", "IN HONG KONG", "IN NEW YORK", "IN ZURICH", "IN PARIS", "IN ROME", "IN SHANGHAI"][Math.floor(Math.random() * 10)]);
 
     useEffect(() => {
         const interval = setInterval(() => {
