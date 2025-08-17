@@ -3,6 +3,8 @@ import Header from './components/Header.tsx'
 import Hero from './components/Hero.tsx'
 import History from './components/History.tsx'
 import Video from './components/Video.tsx'
+import HistoryTwo from './components/HistoryTwo.tsx'
+import Watches from './components/Watches.tsx'
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
       <Hero />
       <History />
       <Video />
+      <HistoryTwo />
+      <Watches />
     </div>
   )
 }

@@ -11,8 +11,8 @@ const Video = () => {
         offset: ["start center", "end start"]
     });
 
-    const x = useTransform(scrollYProgress, [0, 1], [-795, 1700]);
-    const X = useTransform(scrollYProgress, [0, 1], [795, -1700]);
+    const x = useTransform(scrollYProgress, [0, 1], [-830, 1700]);
+    const X = useTransform(scrollYProgress, [0, 1], [830, -1700]);
 
     const rawX = useSpring(x, {
         stiffness: 200,
