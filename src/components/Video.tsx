@@ -5,7 +5,7 @@ const Video = () => {
 
     const scrollRef = useRef<HTMLDivElement>(null);
 
-    
+
     const { scrollYProgress } = useScroll({
         target: scrollRef,
         offset: ["start center", "end start"]
@@ -16,12 +16,12 @@ const Video = () => {
 
     const rawX = useSpring(x, {
         stiffness: 200,
-        damping: 30
+        damping: 50
     })
 
     const rawX2 = useSpring(X, {
         stiffness: 200,
-        damping: 30
+        damping: 50
     })
 
     const [prevScroll, setPrevScroll] = useState(0);
@@ -32,77 +32,75 @@ const Video = () => {
     const frozenX = useMotionValue(0);
     const frozenX2 = useMotionValue(0);
 
-useEffect(() => {
-  const unsubscribe = scrollYProgress.on("change", (latest) => {
-    setScrollDirection(latest > prevScroll ? 'down' : 'up');
-    setPrevScroll(latest);
-    console.log(rawX2.get());
+    useEffect(() => {
+        const unsubscribe = scrollYProgress.on("change", (latest) => {
+            setScrollDirection(latest > prevScroll ? 'down' : 'up');
+            setPrevScroll(latest);
+            console.log(rawX2.get());
 
-    // Freeze when videos touch
-    if (!isFrozen && scrollDirection === 'down' && scrollYProgress.get() > 0.33) {
-      setIsFrozen(true);
-      frozenX.set(100);
-      frozenX2.set(-1);
-    }
-    // Dim if already frozen and still scrolling down
-    if (isFrozen && scrollDirection === 'down' ) {
-      setIsDimmed(true);
-    }
+            // Freeze when videos touch
+            if (!isFrozen && scrollDirection === 'down' && scrollYProgress.get() > 0.33) {
+                setIsFrozen(true);
+                frozenX.set(100);
+                frozenX2.set(-100);
+            }
+            // Dim if already frozen and still scrolling down
+            if (isFrozen && scrollDirection === 'down') {
+                setIsDimmed(true);
+            }
 
-    // Unfreeze and restore brightness on scroll up
-    if (scrollDirection === 'up' && scrollYProgress.get() < 0.33 && isFrozen) {
-      setIsFrozen(false);
-      setIsDimmed(false);
-    }
-  });
+            // Unfreeze and restore brightness on scroll up
+            if (scrollDirection === 'up' && scrollYProgress.get() < 0.33 && isFrozen) {
+                setIsFrozen(false);
+                setIsDimmed(false);
+            }
+        });
 
-  return () => unsubscribe();
-}, [isFrozen, prevScroll]);
+        return () => unsubscribe();
+    }, [isFrozen, prevScroll]);
 
 
 
     return (
-        <div className='h-[200vh]'>
-            <div 
-                className="flex h-[100vh] overflow-x-hidden scroll-smooth" 
+        <div className='h-[100vh] '>
+            <div
+                className="absolute flex justify-center items-center w-full h-[100vh] overflow-x-hidden scroll-smooth pl-25 pr-24"
                 ref={scrollRef}
             >
-                <motion.div
-                    // initial={{ opacity:0, x:0 }}
-                    // whileInView={{ opacity:1 }}
-                    // viewport={{ root:scrollRef }}
+
+                <motion.video
                     style={{
                         x: isFrozen ? frozenX : rawX,
                         filter: isDimmed ? 'brightness(15%)' : 'brightness(100%)'
                     }}
-                    className="w-[50%] flex items-center justify-center">
-                    <video
-                        src="../first_video.webm"
-                        autoPlay
-                        loop
-                        muted
-                        className="w-full h-150 object-cover p-9"
-                    ></video>
-                </motion.div>
-                <motion.div
-                    // initial={{ opacity:0, x:0 }}
-                    // whileInView={{ opacity:1 }}
-                    // viewport={{ root:scrollRef }}
+                    src="../first_video.webm"
+                    autoPlay
+                    loop
+                    muted
+                    className="w-full h-150 object-cover "
+                ></motion.video>
+
+                <motion.video
                     style={{
                         x: isFrozen ? frozenX2 : rawX2,
                         filter: isDimmed ? 'brightness(15%)' : 'brightness(100%)'
                     }}
-                    className="w-[50%] flex items-center justify-center"
-                >
-                    <video
-                        src="../second_video.webm"
-                        autoPlay
-                        loop
-                        muted
-                        className="w-full h-150 object-cover p-9"
-                    ></video>
-                </motion.div>
+                    src="../second_video.webm"
+                    autoPlay
+                    loop
+                    muted
+                    className="w-full h-150 object-cover"
+                ></motion.video>
             </div>
+            { isFrozen ? <div className='relative flex justify-center items-center w-full  overflow-x-hidden scroll-smooth pl-25 pr-24 h-full'>
+                <video 
+                    src="./main_video.webm" 
+                    autoPlay
+                    loop
+                    muted
+                    className='w-full h-155 object-cover'
+                ></video>
+            </div> : null}
         </div>
     )
 }
