@@ -9,6 +9,10 @@
     background-color: #0b1e36; /* Rich dark blue */
   }
 
+  .border-dark-blue {
+    border-color: #0b1e36;
+  }
+
   .text-sky-blue {
     color: #87CEEB; /* Sky blue */
   }
