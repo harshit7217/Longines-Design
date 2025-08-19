@@ -36,7 +36,7 @@ const Video = () => {
         const unsubscribe = scrollYProgress.on("change", (latest) => {
             setScrollDirection(latest > prevScroll ? 'down' : 'up');
             setPrevScroll(latest);
-            console.log(rawX2.get());
+            // console.log(rawX2.get());
 
             // Freeze when videos touch
             if (!isFrozen && scrollDirection === 'down' && scrollYProgress.get() > 0.33) {
