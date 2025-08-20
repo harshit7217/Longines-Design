@@ -1,16 +1,43 @@
+import { useEffect, useState } from "react";
 
 const Showing = () => {
+    const [width, setWidth] = useState<number>(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWidth(window.innerWidth);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
     return (
-        <div className="flex flex-wrap justify-center items-center">
-            <div className="p-20">
-                <video 
-                    src="../secion.webm"
-                    autoPlay
-                    loop
-                    muted
-                    className="w-[980px]"
-                ></video>
-            </div>
+        <div className="flex flex-wrap  justify-center items-center">
+            { width > 900 ?
+                <div className="p-10 w-[65%]">
+                    <video
+                        src="../secion.webm"
+                        autoPlay
+                        loop
+                        muted
+                        className=""
+                    ></video>
+                </div>
+                :
+                <div className="p-10 w-[100%]">
+                    <video
+                        src="../secion.webm"
+                        autoPlay
+                        loop
+                        muted
+                        className=""
+                    ></video>
+                </div>
+            }
             <div className="flex flex-col justify-center w-[240px] items-center ml-10 mr-10">
                 <img
                     src='../first_watch.webp'
