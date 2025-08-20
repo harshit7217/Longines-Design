@@ -1,14 +1,14 @@
 import { FaInstagram, FaFacebook, FaYoutube, FaTwitter, FaPinterest, FaLinkedinIn, FaWeibo } from 'react-icons/fa'
 const Footer = () => {
     return (
-        <div className="flex flex-col h-[45vh] mt-2">
+        <div className="flex flex-col h-auto w-[100vw] mt-2">
             <hr />
-            <div className="flex justify-around items-start h-[35vh] p-5">
+            <div className="flex flex-wrap justify-around items-start p-5">
                 <div className="flex flex-col gap-5 font-bold text-xl">
                     <p>Watches</p>
                     <p>Suggestions</p>
                 </div>
-                <div className="text-sm">
+                <div className="text-sm mb-10">
                     <ul className="flex flex-col gap-5">
                         <li>MASTER</li>
                         <li>CONQUEST</li>
@@ -17,7 +17,7 @@ const Footer = () => {
                         <li>HERITAGE</li>
                     </ul>
                 </div>
-                <div className="text-sm">
+                <div className="text-sm mb-10">
                     <ul className="flex flex-col gap-5">
                         <li>Store Locator</li>
                         <li>Customer Service</li>
@@ -25,7 +25,7 @@ const Footer = () => {
                         <li>FAQ</li>
                     </ul>
                 </div>
-                <div className="text-sm">
+                <div className="text-sm mb-10">
                     <ul className="flex flex-col gap-5">
                         <li>Legal Terms</li>
                         <li>Careers</li>
@@ -33,23 +33,23 @@ const Footer = () => {
                         <li>Newsletter</li>
                     </ul>
                 </div>
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-5 mb-10">
                     <p>Subscribe to our newsletter*</p>
-                    <div className="flex">
+                    <div className="flex flex-wrap">
                         <input
                             type="text" placeholder="example@gmail.com"
-                            className="border-l border-t border-b p-3"
+                            className="border-l border-t border-b p-3 "
                         />
                         <button className="cursor-pointer border-r border-t border-b p-3">Go</button>
                     </div>
                 </div>
             </div>
             <hr />
-            <div className="flex justify-around items-center h-[10vh]">
-                <p className="text-[12px]">© 2025 LONGINES Watch Co. Francillon Ltd., All rights reserved</p>
-                <p className="text-sm">Accessibility settings</p>
-                <p className="text-sm">Cookies settings</p>
-                <div className='flex gap-1 text-gray-500'>
+            <div className="flex flex-wrap justify-around items-center m-5">
+                <p className="text-[12px] p-2">© 2025 LONGINES Watch Co. Francillon Ltd., All rights reserved</p>
+                <p className="text-sm p-2">Accessibility settings</p>
+                <p className="text-sm p-2">Cookies settings</p>
+                <div className='flex flex-wrap gap-1 text-gray-500 p-2'>
                     <FaInstagram />
                     <FaFacebook />
                     <FaYoutube />

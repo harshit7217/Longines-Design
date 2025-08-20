@@ -13,8 +13,8 @@ const Hero = () => {
     });
 
     return (
-        <div className="pl-9 relative flex items-center h-[84vh] ">
-            <h1 className="text-7xl text-white bold">WHAT <br /> TIME <br /> IS IT <br />{value}?</h1>
+        <div className="pl-9 relative flex items-center h-[95vh] ">
+            <h1 className="text-6xl xl:text-7xl text-white bold">WHAT <br /> TIME <br /> IS IT <br />{value}?</h1>
         </div>
     )
 }

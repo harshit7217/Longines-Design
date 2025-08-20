@@ -2,7 +2,7 @@
 const Showing = () => {
     return (
         <div className="flex flex-wrap justify-center items-center">
-            <div className="">
+            <div className="p-20">
                 <video 
                     src="../secion.webm"
                     autoPlay

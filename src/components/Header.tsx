@@ -9,19 +9,23 @@ interface WindowSize {
     height: number;
 }
 
-const Header = () => {
+interface HeaderProps {
+    scroll: number;
+}
+
+const Header = (props: HeaderProps) => {
     const [scrollDir, setScrollDir] = useState<'up' | 'down'>("down");
 
     useEffect(() => {
         let lastScrollY = window.pageYOffset;
 
         const updateScrollDir = () => {
-            const curentScrollDir = window.pageYOffset;
-            if (Math.abs(curentScrollDir - lastScrollY) < 5) {
+            const currentScrollDir = window.pageYOffset;
+            if (Math.abs(currentScrollDir - lastScrollY) < 5) {
                 return;
             }
-            setScrollDir(curentScrollDir > lastScrollY ? "down" : "up");
-            lastScrollY = curentScrollDir;
+            setScrollDir(currentScrollDir > lastScrollY ? "down" : "up");
+            lastScrollY = currentScrollDir;
         };
 
         window.addEventListener("scroll", updateScrollDir);
@@ -54,8 +58,6 @@ const Header = () => {
         setMenu(false);
     }
 
-    console.log(menu);
-
     return (
         <div className='m-0 p-0 hover:bg-white h-[20vh] overflow-hidden'>
             <img
@@ -65,7 +67,7 @@ const Header = () => {
                 loading="lazy"
             />
             {windowSize.width > 1080 ? (
-                scrollDir == "up" ? (
+                scrollDir == "up" || props.scroll < 200 ? (
                     <div className='fixed bg-white w-[100vw] h-30 z-1'>
                         <div className='m-0 pl-9 h-14 flex justify-between items-center '>
                             <div className='m-0'>
@@ -98,13 +100,13 @@ const Header = () => {
                         </div>
                     </div>
                 ) : null) : (
-                scrollDir == "up" ? (
+                scrollDir == "up" || props.scroll < 200 || menu ? (
                     <div className='fixed bg-white w-[100vw] h-15 z-1'>
                         <div className='m-0 pl-9 h-14 flex justify-between items-center '>
-                            <div className='list-none flex gap-8'>
+                            <ul className='list-none flex gap-8'>
                                 <li className='text-sm text-dark-blue flex items-center'>< CiSearch /></li>
                                 <li className='text-sm text-dark-blue flex items-center'>< CiLocationOn /></li>
-                            </div>
+                            </ul>
                             <div className='m-0'>
                                 <h1 className='text-dark-blue text-3xl underline font-serif'><b><i>LONGINES</i></b></h1>
                             </div>
@@ -126,11 +128,11 @@ const Header = () => {
                             </div>
                         </div>
                     </div>
-                ) : null
+                ) : (null)
             )
             }
             {
-                menu ? <div className='fixed flex flex-col gap-5 w-[100vw] justify-around mt-15 bg-white z-1 pl-5 pr-20 text-dark-blue pb-25'>
+                menu ? <div className='fixed flex flex-col gap-5 w-[100vw] justify-around mt-15 bg-white z-1 pl-5 pr-20 text-dark-blue pb-30 overflow-hidden '>
                     <ul className='flex flex-col gap-4 justify-center '>
                         <li className='font-bold'>MASTER</li>
                         <li className='font-bold'>CONQUEST</li>
@@ -150,7 +152,7 @@ const Header = () => {
                     <hr />
                     <ul className='flex flex-col gap-2 justify-center '>
                         <li className='flex items-center'><VscAccount />My Account</li>
-                        <li className='flex items-center'><CiTimer />Wacth comparator</li>
+                        <li className='flex items-center'><CiTimer />Watch comparator</li>
                         <li className='flex items-center'><TbWorld />India</li>
                     </ul>
                 </div> : null
