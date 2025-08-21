@@ -40,6 +40,7 @@ const Video = () => {
     const [prevScroll, setPrevScroll] = useState(0);
     const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('down');
     const [isFrozen, setIsFrozen] = useState(false);
+    const [mobileFrozen, setMobileFrozen] = useState(false);
     const [isDimmed, setIsDimmed] = useState(false);
 
     const frozenX = useMotionValue(0);
@@ -67,6 +68,7 @@ const Video = () => {
             // Freeze when videos touch
             if (!isFrozen && scrollDirection === 'down' && scrollYProgress.get() > 0.33) {
                 setIsFrozen(true);
+                setMobileFrozen(true);
                 frozenX.set(100);
                 frozenX2.set(-100);
                 mobileFrozenX.set(0);
@@ -75,6 +77,11 @@ const Video = () => {
             // Dim if already frozen and still scrolling down
             if (isFrozen && scrollDirection === 'down') {
                 setIsDimmed(true);
+            }
+
+            if (scrollDirection === 'up' && scrollYProgress.get() < 0.33 && isFrozen) {
+                setMobileFrozen(false);
+                setIsDimmed(false);
             }
 
             // Unfreeze and restore brightness on scroll up
@@ -140,13 +147,14 @@ const Video = () => {
                         ) : null}
                     </div>
                 ) : (
-                    <div className='h-[100vh]'>
+                    <div className='h-[100vh] px-2'>
                         <div
                             className="absolute flex flex-col justify-center items-center w-[98vw] h-[100vh] overflow-x-hidden scroll-smooth pl-1 pr-1"
                             ref={scrollRef}
                         >
                             <motion.video
                                 style={{
+                                    y:slowY,
                                     x: isFrozen ? mobileFrozenX : mobileRawX,
                                     filter: isDimmed ? 'brightness(15%)' : 'brightness(100%)'
                                 }}
@@ -159,6 +167,7 @@ const Video = () => {
 
                             <motion.video
                                 style={{
+                                    y: slowY,
                                     x: isFrozen ? mobileFrozenX2 : mobileRawX2,
                                     filter: isDimmed ? 'brightness(15%)' : 'brightness(100%)'
                                 }}
@@ -169,15 +178,18 @@ const Video = () => {
                                 className="w-full h-[50%] object-cover"
                             ></motion.video>
                         </div>
-                        {isFrozen ? (
+                        {mobileFrozen ? (
                             <div className='relative flex justify-center items-center w-full  overflow-x-hidden scroll-smooth pl-1 pr-1 h-full'>
-                                <video
+                                <motion.video
+                                    style={{
+                                        y:slowY
+                                    }}
                                     src="./main_mobile_video.webm"
                                     autoPlay
                                     loop
                                     muted
                                     className='w-full h-[100vh] object-cover'
-                                ></video>
+                                ></motion.video>
                             </div>
                         ) : null}
                     </div>
