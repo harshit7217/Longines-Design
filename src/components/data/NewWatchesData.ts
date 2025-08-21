@@ -1,4 +1,5 @@
 type Watch = {
+    id: number;
     image: string;
     type: string;
     title: string;
@@ -8,6 +9,7 @@ type Watch = {
 
 export const Watches : Watch[] = [
     {
+        id:1,
         image: "../first_watch.webp",
         type: "New",
         title: "LONGINES SPIRIT ZULU TIME 1925",
@@ -15,6 +17,7 @@ export const Watches : Watch[] = [
         price: "₹421,000.00",
     },
     {
+        id:2,
         image: "../second_watch.avif",
         type: "New",
         title: "LONGINES SPIRIT ZULU TIME",
@@ -22,10 +25,11 @@ export const Watches : Watch[] = [
         price: "₹32,000.00",
     },
     {
+        id:3,
         image: "../third_watch.avif",
         type: "New",
         title: "LONGINES SPIRIT ZULU TIME ",
         description: "Ø 39.00 mm - Automatic watch Stainless steel and ceramic bezel",
-        price: "₹,000.00",
+        price: "₹32,000.00",
     },
 ]
