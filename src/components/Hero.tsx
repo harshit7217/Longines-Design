@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import AOS from 'aos';
+import "aos/dist/aos.css";
 
 const Hero = () => {
 
@@ -12,8 +14,12 @@ const Hero = () => {
         return () => clearInterval(interval);
     });
 
+    useEffect(() => {
+        AOS.init({duration:1000})
+    },[])
+
     return (
-        <div className="pl-9 relative flex items-center h-[95vh] ">
+        <div data-aos='fade-up' className="pl-9 relative flex items-center h-[95vh] ">
             <h1 className="text-6xl xl:text-7xl text-white bold">WHAT <br /> TIME <br /> IS IT <br />{value}?</h1>
         </div>
     )

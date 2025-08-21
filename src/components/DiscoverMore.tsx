@@ -1,5 +1,6 @@
 
-import { discoverWatches as disWatchData } from "./data/DiscoverWatchesData.ts"
+import { discoverMore as disWatchData } from "./data/DiscoverMoreData.ts"
+import 'aos/dist/aos.css';
 
 type Watch = {
     image: string;
@@ -13,7 +14,7 @@ const DiscoverMore = () => {
     
 
     return (
-        <div className="mt-20 ml-20 mr-20">
+        <div data-aos='fade-up' className="mt-20 ml-20 mr-20">
             <div className="text-xl mb-4 font-bold font-serif">
                 <button>DISCOVER MORE</button>
             </div>

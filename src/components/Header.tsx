@@ -61,7 +61,7 @@ const Header = (props: HeaderProps) => {
     return (
         <div className='m-0 p-0 hover:bg-white h-[20vh] overflow-hidden'>
             <img
-                src="./hero-section-bg.avif" 
+                src="./hero-section-bg.avif"
                 alt="Hero Section Background"
                 className="absolute block w-full h-[100vh] object-cover"
                 loading="lazy"

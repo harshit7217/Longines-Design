@@ -1,7 +1,10 @@
 import { Watches as watchesData } from "./data/NewWatchesData.ts"
 // Update the import to match the actual export from DiscoverWatchesData.ts
 import { discoverWatches as disWatchData } from "./data/DiscoverWatchesData.ts"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css'
+
 
 type Watch = {
     image: string;
@@ -22,8 +25,12 @@ const Watches = () => {
         setCheck(() => false);
     };
 
+    useEffect(() => {
+        AOS.init({duration:1000});
+    }, [])
+
     return (
-        <div className="p-1 m-1">
+        <div data-aos='fade-up' className="p-1 m-1">
             <div className="flex justify-center gap-7 font-serif">
                 <button onClick={handleNew}>NEW</button>
                 <button onClick={handleDiscover}>DISCOVER MORE</button>
