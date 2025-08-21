@@ -34,19 +34,19 @@ const Banner = () => {
                         </div>
                     </div>
                 </div> :
-                <div className="mt-20 h-[30vh]">
+                <div className="mt-20 h-[20vh]">
                     <div className="absolute">
 
                         <img
                             src="../banner.avif"
                             alt="banner image"
-                            className="h-[30vh]"
+                            className="h-[20vh]"
                         />
                     </div>
-                    <div className="relative flex flex-col justify-end items-center w-[70%] pl-5 h-[25vh]">
+                    <div className="relative flex flex-col justify-end items-center w-[70%] pl-5 h-[20vh]">
                         <div>
-                            <p className="text-white text-3xl font-bold font-serif">LONGINES SPIRIT ZULU TIME</p>
-                            <p><a href="" className="text-white text-2xl font-serif">Discover the collection</a></p>
+                            <p className="text-white text-2xl font-bold font-serif">LONGINES SPIRIT ZULU TIME</p>
+                            <p><a href="" className="text-white text-xl font-serif">Discover the collection</a></p>
                         </div>
                     </div>
                 </div>
